@@ -8,20 +8,18 @@ TIME_TO_SLEEP = 0.5
 
 # of course this code looks dumb, but imagine some real implementations of each method here
 class HueLightDevice:
-    @staticmethod
-    async def connect() -> None:
+    async def connect(self) -> None:
         print("Connecting Hue Light.")
         await asyncio.sleep(TIME_TO_SLEEP)
         print("Hue Light connected.")
 
-    @staticmethod
-    async def disconnect() -> None:
+    async def disconnect(self) -> None:
         print("Disconnecting Hue Light.")
         await asyncio.sleep(TIME_TO_SLEEP)
         print("Hue Light disconnected.")
 
-    @staticmethod
     async def send_message(
+            self,
             message_type: MessageType,
             data: str = ""
     ) -> None:
@@ -34,20 +32,19 @@ class HueLightDevice:
 
 
 class SmartSpeakerDevice:
-    @staticmethod
-    async def connect() -> None:
+
+    async def connect(self) -> None:
         print("Connecting to Smart Speaker.")
         await asyncio.sleep(TIME_TO_SLEEP)
         print("Smart Speaker connected.")
 
-    @staticmethod
-    async def disconnect() -> None:
+    async def disconnect(self) -> None:
         print("Disconnecting Smart Speaker.")
         await asyncio.sleep(TIME_TO_SLEEP)
         print("Smart Speaker disconnected.")
 
-    @staticmethod
     async def send_message(
+            self,
             message_type: MessageType,
             data: str = ""
     ) -> None:
@@ -60,20 +57,19 @@ class SmartSpeakerDevice:
 
 
 class SmartToiletDevice:
-    @staticmethod
-    async def connect() -> None:
+
+    async def connect(self) -> None:
         print("Connecting to Smart Toilet.")
         await asyncio.sleep(TIME_TO_SLEEP)
         print("Smart Toilet connected.")
 
-    @staticmethod
-    async def disconnect() -> None:
+    async def disconnect(self) -> None:
         print("Disconnecting Smart Toilet.")
         await asyncio.sleep(TIME_TO_SLEEP)
         print("Smart Toilet disconnected.")
 
-    @staticmethod
     async def send_message(
+            self,
             message_type: MessageType,
             data: str = ""
     ) -> None:

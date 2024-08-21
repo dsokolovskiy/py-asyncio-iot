@@ -25,6 +25,7 @@ class Device(Protocol):
 class IOTService:
     def __init__(self) -> None:
         self.devices: dict[str, Device] = {}
+        self.running_programs: dict[str, list[Message]] = {}
 
     async def register_device(self, device: Device) -> str:
         await device.connect()
@@ -41,9 +42,14 @@ class IOTService:
 
     async def run_program(self, program: list[Message]) -> None:
         print("=====RUNNING PROGRAM======")
+        program_id = generate_id()
+        self.running_programs[program_id] = program
         for msg in program:
             await self.send_msg(msg)
         print("=====END OF PROGRAM======")
 
     async def send_msg(self, msg: Message) -> None:
         await self.devices[msg.device_id].send_message(msg.msg_type, msg.data)
+
+    def gather_running_programs(self) -> dict[str, list[Message]]:
+        return self.running_programs
