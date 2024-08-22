@@ -34,22 +34,22 @@ async def main() -> None:
     # wake-up program
     await run_sequence(
         run_parallel(
-            service.send_msg(Message(hue_light_id, MessageType.SWITCH_ON)),
-            service.send_msg(Message(speaker_id, MessageType.SWITCH_ON))
+                service.send_msg(Message(hue_light_id, MessageType.SWITCH_ON)),
+            service.send_msg(Message(speaker_id, MessageType.SWITCH_ON)),
         ),
-        service.send_msg(Message(speaker_id,
-                                 MessageType.PLAY_SONG,
-                                 "Rick Astley - Never Gonna Give You Up"))
+        service.send_msg(Message(
+            speaker_id,
+            MessageType.PLAY_SONG,
+            "Rick Astley - Never Gonna Give You Up"
+        ))
     )
     # sleep program:
     await run_sequence(
-        run_parallel(service.send_msg(Message(hue_light_id,
-                                              MessageType.SWITCH_OFF)),
-                     service.send_msg(Message(speaker_id,
-                                              MessageType.SWITCH_OFF)),
-                     service.send_msg(Message(toilet_id,
-                                              MessageType.FLUSH))
-                     ),
+        run_parallel(
+            service.send_msg(Message(hue_light_id, MessageType.SWITCH_OFF)),
+            service.send_msg(Message(speaker_id, MessageType.SWITCH_OFF)),
+            service.send_msg(Message(toilet_id, MessageType.FLUSH))
+        ),
         service.send_msg(Message(toilet_id, MessageType.CLEAN))
     )
 
